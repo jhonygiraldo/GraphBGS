@@ -95,9 +95,8 @@ for hh=1:length(epsilon_set_pesenson)
                     %%
                     x_sampled_random = M_random*x;
                     %%
-                    %x_reconstructed_random = gsp_interpolate(G, x_sampled_random,...
-                    %    find(S_opt_random == 1),param);
-                    x_reconstructed_random = x;
+                    x_reconstructed_random = gsp_interpolate(G, x_sampled_random,...
+                        find(S_opt_random == 1),param);
                     [~,f_recon_random] = max(x_reconstructed_random,[],2); % predicted class labels
                     %%
                     indx_category = find(indentifier_category_in_nodes == indx_category);
