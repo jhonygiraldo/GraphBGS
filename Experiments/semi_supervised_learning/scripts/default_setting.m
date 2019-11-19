@@ -25,8 +25,7 @@ folders_categories = {{'blizzard';'skating';'snowFall';'wetSnow'};...
 x = label_bin;
 x(:,3) = [];
 %%
-%percentage_sampling = [0.02:0.02:0.2]; % The last repetition of 0.02 is missing
-percentage_sampling = [0.06:0.02:0.2];
+percentage_sampling = [0.02:0.02:0.2];
 %%
 list_raw_images = cell(size(folder_challenges,1),1);
 list_of_images_cell = cell(size(folder_challenges,1),1);
