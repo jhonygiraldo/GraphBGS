@@ -1,6 +1,6 @@
 clear all, close all, clc;
 %% Setting of paths
-path_to_change_detection = '/home/jhonygiraldoz/changedetection_dataset/'; % Change this line with your path to the change detection database
+path_to_change_detection = '/Users/knguye02/Documents/dataset2014/dataset/'; % Change this line with your path to the change detection database
 segmentation_algorithm = 'R_50_FPN_COCO';
 background_inti_algorithm = 'median_filter';
 construction_algorithm = 'k-NN';
@@ -25,7 +25,8 @@ folders_categories = {{'blizzard';'skating';'snowFall';'wetSnow'};...
 x = label_bin;
 x(:,3) = [];
 %%
-percentage_sampling = [0.02:0.02:0.2];
+%percentage_sampling = [0.02:0.02:0.2]; % The last repetition of 0.02 is missing
+percentage_sampling = [0.06:0.02:0.2];
 %%
 list_raw_images = cell(size(folder_challenges,1),1);
 list_of_images_cell = cell(size(folder_challenges,1),1);
@@ -36,11 +37,11 @@ for i=1:size(folder_challenges,1)
     indx_first_image_in_list_temp = zeros(size(folders_categories{i},1),1);
     for j=1:size(folders_categories{i,1},1)
         folder_raw_images = [path_to_change_detection,folder_challenges{i},'/',...
-            folder_challenges{i},'/',folders_categories{i}{j},'/input/'];
+            folders_categories{i}{j},'/input/'];
         list_raw_images_temp{j} = dir(folder_raw_images);
         %%
         path_to_category = [path_to_change_detection,folder_challenges{i},'/',...
-            folder_challenges{i},'/',folders_categories{i}{j},'/'];
+            folders_categories{i}{j},'/'];
         file_txt_ID = fopen([path_to_category,'temporalROI.txt'],'r');
         range_eval = fscanf(file_txt_ID,'%f');
         fclose(file_txt_ID);
@@ -97,6 +98,7 @@ for hh=1:length(epsilon_set_pesenson)
                     %%
                     x_reconstructed_random = gsp_interpolate(G, x_sampled_random,...
                         find(S_opt_random == 1),param);
+                    %x_reconstructed_random = x;
                     [~,f_recon_random] = max(x_reconstructed_random,[],2); % predicted class labels
                     %%
                     indx_category = find(indentifier_category_in_nodes == indx_category);
@@ -107,21 +109,22 @@ for hh=1:length(epsilon_set_pesenson)
                         original_image = list_of_images_cell{i}{jj}.list_of_images(kk);
                         indx_point = strfind(original_image{1},'.');
                         indx_n = strfind(original_image{1},'n');
-                        original_image = [original_image{1}(1:indx_point-1) '.png'];
-                        if exist([results_path,original_image]) == 0
+                        original_image_mat = ['bin' original_image{1}(indx_n+1:indx_point-1) '.mat'];
+                        if exist([results_path,original_image_mat]) == 0
                             node_image = load([nodes_path_category,num2str(kk),'.mat']);
-                            image_black = zeros(size(node_image.logical_sparse_mat));
-                            imwrite(image_black,[results_path,original_image]);
+                            image_result = sparse(logical(zeros(size(node_image.logical_sparse_mat))));
+                            save([results_path,original_image_mat],'image_result');
                         end
                         if f_recon_random(indx_category(kk)) == 2 % Foreground
                             node_image = load([nodes_path_category,num2str(kk),'.mat']);
-                            node_image = full(node_image.logical_sparse_mat);
-                            if exist([results_path,original_image]) == 2
-                                old_node_image = imread([results_path,original_image]);
-                                new_node_image = old_node_image | node_image;
-                                imwrite(new_node_image,[results_path,original_image]);
+                            node_image = node_image.logical_sparse_mat;
+                            if exist([results_path,original_image_mat]) == 2
+                                old_result_image = load([results_path,original_image_mat]);
+                                image_result = old_result_image.image_result | node_image;
+                                save([results_path,original_image_mat],'image_result');
                             else
-                                imwrite(node_image,[results_path,original_image]);
+                                image_result = node_image;
+                                save([results_path,original_image_mat],'image_result');
                             end
                         end
                     end

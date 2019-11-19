@@ -26,7 +26,7 @@ for kk=1:size(folder_challenges,1)
     for y=1:size(folders_categories{kk},1)
         %%
         path_to_category = [path_to_change_detection,folder_challenges{kk},'/',...
-            folder_challenges{kk},'/',folders_categories{kk}{y},'/'];
+            folders_categories{kk}{y},'/'];
         file_txt_ID = fopen([path_to_category,'temporalROI.txt'],'r');
         range_eval = fscanf(file_txt_ID,'%f');
         fclose(file_txt_ID);
