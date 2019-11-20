@@ -1,6 +1,6 @@
 clear all, close all, clc;
 %% Setting of paths
-path_to_change_detection = 'home/jhonygiraldoz/changedetection_dataset/'; % Change this line with your path to the change detection database
+path_to_change_detection = '/home/jhonygiraldoz/changedetection_dataset/'; % Change this line with your path to the change detection database
 segmentation_algorithm = 'R_50_FPN_COCO';
 background_inti_algorithm = 'median_filter';
 construction_algorithm = 'k-NN';
