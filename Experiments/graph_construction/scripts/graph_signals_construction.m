@@ -1,32 +1,45 @@
 clear all, close all, clc;
 %% Setting of paths
-path_to_change_detection = '/home/jhonygiraldoz/changedetection_dataset/'; % Change this line with your path to the change detection database
+path_to_change_detection = '/home/jhonygiraldoz/change_detection/'; % Change this line with your path to the change detection database
 segmentation_algorithm = 'R_50_FPN_COCO';
 background_inti_algorithm = 'median_filter';
+path_to_graph_signal = [pwd,'/../graph_signal_',segmentation_algorithm,...
+    '-',background_inti_algorithm,'/'];
+mkdir(path_to_graph_signal);
 %%
 folder_challenges = {'badWeather';'baseline';'cameraJitter';'dynamicBackground';...
     'intermittentObjectMotion';'lowFramerate';'nightVideos';'PTZ';'shadow';...
     'thermal';'turbulence'};
+folders_sequences = {{'blizzard';'skating';'snowFall';'wetSnow'};...
+    {'PETS2006';'highway';'office';'pedestrians'};...
+    {'badminton';'boulevard';'sidewalk';'traffic'};...
+    {'boats';'canoe';'fall';'fountain01';'fountain02';'overpass'};...
+    {'abandonedBox';'parking';'sofa';'streetLight';'tramstop';'winterDriveway'};...
+    {'port_0_17fps';'tramCrossroad_1fps';'tunnelExit_0_35fps';'turnpike_0_5fps'};...
+    {'bridgeEntry';'busyBoulvard';'fluidHighway';'streetCornerAtNight';'tramStation';'winterStreet'};...
+    {'continuousPan';'intermittentPan';'twoPositionPTZCam';'zoomInZoomOut'};...
+    {'backdoor';'bungalows';'busStation';'copyMachine';'cubicle';'peopleInShade'};...
+    {'corridor';'diningRoom';'lakeSide';'library';'park'};...
+    {'turbulence0';'turbulence1';'turbulence2';'turbulence3'}};
 %%
 for h=1:length(folder_challenges)
     disp(['Computing the graph signal of challenge ',folder_challenges{h}]);
     label_bin = [];
     path_to_features = [pwd,'/../../nodes_representation/',segmentation_algorithm,...
         '-',background_inti_algorithm,'/',folder_challenges{h},'/'];
-    path_to_sequences = [path_to_change_detection,folder_challenges{h},'/',...
-        folder_challenges{h},'/'];
-    folders_sequences = dir(path_to_sequences);
-    for i=1:size(folders_sequences,1)-2
-        disp(['Sequence: ',folders_sequences(i+2).name]);
+    path_to_sequences = [path_to_change_detection,folder_challenges{h},'/'];
+    for i=1:size(folders_sequences{h},1)
+        disp(['Sequence: ',folders_sequences{h}{i}]);
         %% 
-        load([path_to_features,'list_of_images_',folders_sequences(i+2).name,'.mat']);
+        load([path_to_features,'list_of_images_',folders_sequences{h}{i},'.mat']);
         %% 
-        path_to_category = [path_to_sequences,folders_sequences(i+2).name,'/'];
+        path_to_category = [path_to_sequences,folders_sequences{h}{i},'/'];
         file_txt_ID = fopen([path_to_category,'temporalROI.txt'],'r');
         range_eval = fscanf(file_txt_ID,'%f');
+        fclose(file_txt_ID);
         path_to_ground_truth = [path_to_category,'groundtruth/'];
         path_to_nodes = [pwd,'/../../isolated_nodes/',segmentation_algorithm,...
-            '/',folder_challenges{h},'/',folders_sequences(i+2).name,'/'];
+            '/',folder_challenges{h},'/',folders_sequences{h}{i},'/'];
         %% ROI
         ROI = logical(imread([path_to_category,'ROI.bmp']));
         for j=1:size(list_of_images,1)
@@ -47,7 +60,7 @@ for h=1:length(folder_challenges)
                     gt_image_temp = imread([path_to_ground_truth,'gt',number_image,'.png']);
                     [x_gt y_gt] = size(gt_image_temp);
                     gt_image = zeros(x_gt,y_gt);
-                    gt_image(find(gt_image_temp == 255)) = 1; % We are going to process just the foreground region
+                    gt_image(find(gt_image_temp == 255)) = 1;
                     [L_gt,n_gt] = bwlabel(gt_image);
                     all_IoU = zeros(n_gt,1);
                     for k=1:n_gt
@@ -70,5 +83,5 @@ for h=1:length(folder_challenges)
             end
         end
     end
-    save([pwd,'/../graph_signals/graph_signal_',folder_challenges{h},'.mat'],'label_bin','folders_sequences'); % We need the file folders sequences to now the order of the nodes
+    save([path_to_graph_signal,folder_challenges{h},'.mat'],'label_bin','folders_sequences'); % We need the file folders sequences to now the order of the nodes
 end
