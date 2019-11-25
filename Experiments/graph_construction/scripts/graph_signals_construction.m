@@ -83,5 +83,5 @@ for h=1:length(folder_challenges)
             end
         end
     end
-    save([path_to_graph_signal,folder_challenges{h},'.mat'],'label_bin','folders_sequences'); % We need the file folders sequences to now the order of the nodes
+    save([path_to_graph_signal,folder_challenges{h},'.mat'],'label_bin');
 end
