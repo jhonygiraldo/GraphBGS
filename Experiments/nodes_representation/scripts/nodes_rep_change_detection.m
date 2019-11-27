@@ -1,7 +1,7 @@
 clear all, close all, clc;
 %% Setting of paths
 path_to_change_detection = '/home/jhonygiraldoz/change_detection/'; % Change this line with your path to the change detection database
-segmentation_algorithm = 'R_50_FPN_COCO';
+segmentation_algorithm = 'X_101_FPN_COCO';
 background_inti_algorithm = 'median_filter';
 path_to_nodes_representation = [pwd,'/../',segmentation_algorithm,'-',...
     background_inti_algorithm,'/'];
@@ -126,19 +126,24 @@ for hh=1:size(folder_challenges,1)
                         current_image_box = current_raw_image(yMin:yMax,xMin:xMax);
                         previous_image_box = previous_raw_image(yMin:yMax,xMin:xMax);
                         back_image_box = background_image(yMin:yMax,xMin:xMax);
+                        difference_current_back_box = uint8(abs(double(current_image_box)-double(back_image_box)));
                         %% For Intensity Features
                         current_intensity_features = histcounts(current_raw_image(indexs_segment),[0:2:255],'Normalization', 'probability');
                         previous_intensity_features = histcounts(previous_raw_image(indexs_segment),[0:2:255],'Normalization', 'probability');
                         background_intensity_features = histcounts(background_image(indexs_segment),[0:2:255],'Normalization', 'probability');
+                        difference_intensity_features = histcounts(abs(double(current_raw_image(indexs_segment))-double(background_image(indexs_segment))),...
+                            [0:2:255],'Normalization', 'probability');
                         %%
                         current_LBP_features = extractLBPFeatures(current_image_box);
                         previous_LBP_features = extractLBPFeatures(previous_image_box);
                         background_LBP_features = extractLBPFeatures(back_image_box);
+                        difference_LBP_features = extractLBPFeatures(difference_current_back_box);
                         %%
                         features(cont,:) = [max(Magnitude) mean(Magnitude) range(Magnitude) std(Magnitude) mad(Magnitude),...
                             min(Orientation) max(Orientation) mean(Orientation) range(Orientation) std(Orientation) mad(Orientation),...
-                            hist_orientation, hist_magnitude, current_LBP_features, previous_LBP_features, background_LBP_features,...
-                            current_intensity_features, previous_intensity_features, background_intensity_features];
+                            hist_orientation, hist_magnitude,...
+                            current_LBP_features, previous_LBP_features, background_LBP_features, difference_LBP_features,...
+                            current_intensity_features, previous_intensity_features, background_intensity_features, difference_intensity_features];
                         %%
                         list_of_images{cont,1} = list_img_path(i+2).name;
                         cont = cont + 1;
