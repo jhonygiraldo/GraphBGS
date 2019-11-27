@@ -1,7 +1,7 @@
 % This code needs the GSP toolbox
 clear all, close all, clc;
 %% Setting of paths
-segmentation_algorithm = 'R_50_FPN_COCO';
+segmentation_algorithm = 'X_101_FPN_COCO';
 background_inti_algorithm = 'median_filter';
 construction_algorithm = 'k-NN';
 path_to_construction = [pwd,'/../',construction_algorithm,'-',segmentation_algorithm,...
@@ -37,6 +37,8 @@ for i=1:length(folder_challenges)
     end
 end
 %%
+points = zscore(points);
+%%
 N = size(points,1);
 knn_param = 10;
 [Idx Dist] = knnsearch(points,points,'K',knn_param+1);
@@ -56,4 +58,4 @@ G.type = 'nearest neighbors';
 G.sigma = sigma;
 G = gsp_graph_default_parameters(G);
 G = gsp_estimate_lmax(G);
-save([path_to_construction,'/full_graph.mat'],'G','label_bin','points','Idx','Dist');
+save([path_to_construction,'full_graph.mat'],'G','label_bin','points','Idx','Dist');
