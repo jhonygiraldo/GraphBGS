@@ -32,7 +32,6 @@ get(gca);
 set(gca,'FontName','times','FontSize',font_size,'TickLabelInterpreter','Latex');
 set(gcf,'Position',[100,100,width,heigth]);
 saveas(gcf,[path_figures 'bad_weather.svg']);
-%saveas(gcf,[path_figures 'bad_weather.png']);
 %% Figure baseline
 figure()
 errorbar(R_50_COCO.sampling_density,mean(R_50_COCO.average_FMeasure{figures_cvpr(2)}),std(R_50_COCO.average_FMeasure{figures_cvpr(2)}),...
@@ -43,9 +42,7 @@ errorbar(X_101_COCO.sampling_density,mean(X_101_COCO.average_FMeasure{figures_cv
 ylabel('Average f-measure','Interpreter','Latex');
 xlabel('Sampling density','Interpreter','Latex');
 xlim([R_50_COCO.sampling_density(1) 0.1]);
-%ylim([0.2 1]);
 lgd = legend({'ResNet50','ResNeXt-101'},'Location','southeast');
-%lgd.NumColumns = 2;
 set(lgd,'Interpreter','latex');
 set(lgd,'color','none');
 set(lgd,'Box','off');
@@ -54,7 +51,6 @@ get(gca);
 set(gca,'FontName','times','FontSize',font_size,'TickLabelInterpreter','Latex');
 set(gcf,'Position',[100,100,width,heigth]);
 saveas(gcf,[path_figures 'baseline.svg']);
-%saveas(gcf,[path_figures 'baseline.png']);
 %% Figure camera jitter
 figure()
 errorbar(R_50_COCO.sampling_density,mean(R_50_COCO.average_FMeasure{figures_cvpr(3)}),std(R_50_COCO.average_FMeasure{figures_cvpr(3)}),...
@@ -65,9 +61,7 @@ errorbar(X_101_COCO.sampling_density,mean(X_101_COCO.average_FMeasure{figures_cv
 ylabel('Average f-measure','Interpreter','Latex');
 xlabel('Sampling density','Interpreter','Latex');
 xlim([R_50_COCO.sampling_density(1) 0.1]);
-%ylim([0.2 1]);
 lgd = legend({'ResNet50','ResNeXt-101'},'Location','southeast');
-%lgd.NumColumns = 2;
 set(lgd,'Interpreter','latex');
 set(lgd,'color','none');
 set(lgd,'Box','off');
@@ -76,7 +70,6 @@ get(gca);
 set(gca,'FontName','times','FontSize',font_size,'TickLabelInterpreter','Latex');
 set(gcf,'Position',[100,100,width,heigth]);
 saveas(gcf,[path_figures 'camera_jitter.svg']);
-%saveas(gcf,[path_figures 'camera_jitter.png']);
 %% Figure dynamic background
 figure()
 errorbar(R_50_COCO.sampling_density,mean(R_50_COCO.average_FMeasure{figures_cvpr(4)}),std(R_50_COCO.average_FMeasure{figures_cvpr(4)}),...
@@ -87,9 +80,7 @@ errorbar(X_101_COCO.sampling_density,mean(X_101_COCO.average_FMeasure{figures_cv
 ylabel('Average f-measure','Interpreter','Latex');
 xlabel('Sampling density','Interpreter','Latex');
 xlim([R_50_COCO.sampling_density(1) 0.1]);
-%ylim([0.2 1]);
 lgd = legend({'ResNet50','ResNeXt-101'},'Location','southeast');
-%lgd.NumColumns = 2;
 set(lgd,'Interpreter','latex');
 set(lgd,'color','none');
 set(lgd,'Box','off');
@@ -98,7 +89,6 @@ get(gca);
 set(gca,'FontName','times','FontSize',font_size,'TickLabelInterpreter','Latex');
 set(gcf,'Position',[100,100,width,heigth]);
 saveas(gcf,[path_figures 'dynamic_background.svg']);
-%saveas(gcf,[path_figures 'dynamic_background.png']);
 %% Figure intermittent object motion
 figure()
 errorbar(R_50_COCO.sampling_density,mean(R_50_COCO.average_FMeasure{figures_cvpr(5)}),std(R_50_COCO.average_FMeasure{figures_cvpr(5)}),...
@@ -109,9 +99,7 @@ errorbar(X_101_COCO.sampling_density,mean(X_101_COCO.average_FMeasure{figures_cv
 ylabel('Average f-measure','Interpreter','Latex');
 xlabel('Sampling density','Interpreter','Latex');
 xlim([R_50_COCO.sampling_density(1) 0.1]);
-%ylim([0.2 1]);
 lgd = legend({'ResNet50','ResNeXt-101'},'Location','southeast');
-%lgd.NumColumns = 2;
 set(lgd,'Interpreter','latex');
 set(lgd,'color','none');
 set(lgd,'Box','off');
@@ -120,7 +108,6 @@ get(gca);
 set(gca,'FontName','times','FontSize',font_size,'TickLabelInterpreter','Latex');
 set(gcf,'Position',[100,100,width,heigth]);
 saveas(gcf,[path_figures 'io_motion.svg']);
-%saveas(gcf,[path_figures 'io_motion.png']);
 %% Figure low frame rate
 figure()
 errorbar(R_50_COCO.sampling_density,mean(R_50_COCO.average_FMeasure{figures_cvpr(6)}),std(R_50_COCO.average_FMeasure{figures_cvpr(6)}),...
@@ -131,9 +118,7 @@ errorbar(X_101_COCO.sampling_density,mean(X_101_COCO.average_FMeasure{figures_cv
 ylabel('Average f-measure','Interpreter','Latex');
 xlabel('Sampling density','Interpreter','Latex');
 xlim([R_50_COCO.sampling_density(1) 0.1]);
-%ylim([0.2 1]);
 lgd = legend({'ResNet50','ResNeXt-101'},'Location','southeast');
-%lgd.NumColumns = 2;
 set(lgd,'Interpreter','latex');
 set(lgd,'color','none');
 set(lgd,'Box','off');
@@ -142,7 +127,6 @@ get(gca);
 set(gca,'FontName','times','FontSize',font_size,'TickLabelInterpreter','Latex');
 set(gcf,'Position',[100,100,width,heigth]);
 saveas(gcf,[path_figures 'low_frame_rate.svg']);
-%saveas(gcf,[path_figures 'low_frame_rate.png']);
 %% Figure PTZ
 figure()
 errorbar(R_50_COCO.sampling_density,mean(R_50_COCO.average_FMeasure{figures_cvpr(8)}),std(R_50_COCO.average_FMeasure{figures_cvpr(8)}),...
@@ -153,9 +137,7 @@ errorbar(X_101_COCO.sampling_density,mean(X_101_COCO.average_FMeasure{figures_cv
 ylabel('Average f-measure','Interpreter','Latex');
 xlabel('Sampling density','Interpreter','Latex');
 xlim([R_50_COCO.sampling_density(1) 0.1]);
-%ylim([0.2 1]);
 lgd = legend({'ResNet50','ResNeXt-101'},'Location','southeast');
-%lgd.NumColumns = 2;
 set(lgd,'Interpreter','latex');
 set(lgd,'color','none');
 set(lgd,'Box','off');
@@ -164,7 +146,6 @@ get(gca);
 set(gca,'FontName','times','FontSize',font_size,'TickLabelInterpreter','Latex');
 set(gcf,'Position',[100,100,width,heigth]);
 saveas(gcf,[path_figures 'ptz.svg']);
-%saveas(gcf,[path_figures 'ptz.png']);
 %% Figure Shadow
 figure()
 errorbar(R_50_COCO.sampling_density,mean(R_50_COCO.average_FMeasure{figures_cvpr(9)}),std(R_50_COCO.average_FMeasure{figures_cvpr(9)}),...
@@ -175,9 +156,7 @@ errorbar(X_101_COCO.sampling_density,mean(X_101_COCO.average_FMeasure{figures_cv
 ylabel('Average f-measure','Interpreter','Latex');
 xlabel('Sampling density','Interpreter','Latex');
 xlim([R_50_COCO.sampling_density(1) 0.1]);
-%ylim([0.2 1]);
 lgd = legend({'ResNet50','ResNeXt-101'},'Location','southeast');
-%lgd.NumColumns = 2;
 set(lgd,'Interpreter','latex');
 set(lgd,'color','none');
 set(lgd,'Box','off');
@@ -186,7 +165,6 @@ get(gca);
 set(gca,'FontName','times','FontSize',font_size,'TickLabelInterpreter','Latex');
 set(gcf,'Position',[100,100,width,heigth]);
 saveas(gcf,[path_figures 'shadow.svg']);
-%saveas(gcf,[path_figures 'shadow.png']);
 %% Figure Thermal
 figure()
 errorbar(R_50_COCO.sampling_density,mean(R_50_COCO.average_FMeasure{figures_cvpr(10)}),std(R_50_COCO.average_FMeasure{figures_cvpr(10)}),...
@@ -197,9 +175,7 @@ errorbar(X_101_COCO.sampling_density,mean(X_101_COCO.average_FMeasure{figures_cv
 ylabel('Average f-measure','Interpreter','Latex');
 xlabel('Sampling density','Interpreter','Latex');
 xlim([R_50_COCO.sampling_density(1) 0.1]);
-%ylim([0.2 1]);
 lgd = legend({'ResNet50','ResNeXt-101'},'Location','northeast');
-%lgd.NumColumns = 2;
 set(lgd,'Interpreter','latex');
 set(lgd,'color','none');
 set(lgd,'Box','off');
@@ -208,4 +184,3 @@ get(gca);
 set(gca,'FontName','times','FontSize',font_size,'TickLabelInterpreter','Latex');
 set(gcf,'Position',[100,100,width,heigth]);
 saveas(gcf,[path_figures 'thermal.svg']);
-%saveas(gcf,[path_figures 'thermal.png']);
