@@ -3,7 +3,6 @@ TV = load('../TV-k-NN-k-30-R_50_FPN_COCO-median_filter/results_metrics.mat');
 e02 = load('../variational_splines-k-NN-k-30-R_50_FPN_COCO-median_filter/results_metrics.mat');
 e05 = load('../variational_splines-k-NN-k-30-R_50_FPN_COCO-median_filter-epsilon-0.5/results_metrics.mat');
 e50 = load('../variational_splines-k-NN-k-30-R_50_FPN_COCO-median_filter-epsilon-50/results_metrics.mat');
-%TV = e02;
 %%
 figures_cvpr = [1:11];
 challenges = {'badWeather';'baseline';'cameraJitter';'dynamicBackground';...
@@ -40,7 +39,6 @@ get(gca);
 set(gca,'FontName','times','FontSize',font_size,'TickLabelInterpreter','Latex');
 set(gcf,'Position',[100,100,width,heigth]);
 saveas(gcf,[path_figures 'bad_weather.svg']);
-saveas(gcf,[path_figures 'bad_weather.png']);
 %% Figure baseline
 figure()
 errorbar(TV.sampling_density,mean(TV.average_FMeasure{figures_cvpr(2)}),std(TV.average_FMeasure{figures_cvpr(2)}),...
@@ -66,7 +64,6 @@ get(gca);
 set(gca,'FontName','times','FontSize',font_size,'TickLabelInterpreter','Latex');
 set(gcf,'Position',[100,100,width,heigth]);
 saveas(gcf,[path_figures 'baseline.svg']);
-saveas(gcf,[path_figures 'baseline.png']);
 %% Figure camera jitter
 figure()
 errorbar(TV.sampling_density,mean(TV.average_FMeasure{figures_cvpr(3)}),std(TV.average_FMeasure{figures_cvpr(3)}),...
@@ -92,7 +89,6 @@ get(gca);
 set(gca,'FontName','times','FontSize',font_size,'TickLabelInterpreter','Latex');
 set(gcf,'Position',[100,100,width,heigth]);
 saveas(gcf,[path_figures 'camera_jitter.svg']);
-saveas(gcf,[path_figures 'camera_jitter.png']);
 %% Figure dynamic background
 figure()
 errorbar(TV.sampling_density,mean(TV.average_FMeasure{figures_cvpr(4)}),std(TV.average_FMeasure{figures_cvpr(4)}),...
@@ -117,7 +113,6 @@ get(gca);
 set(gca,'FontName','times','FontSize',font_size,'TickLabelInterpreter','Latex');
 set(gcf,'Position',[100,100,width,heigth]);
 saveas(gcf,[path_figures 'dynamic_background.svg']);
-saveas(gcf,[path_figures 'dynamic_background.png']);
 %% Figure intermittent object motion
 figure()
 errorbar(TV.sampling_density,mean(TV.average_FMeasure{figures_cvpr(5)}),std(TV.average_FMeasure{figures_cvpr(5)}),...
@@ -142,7 +137,6 @@ get(gca);
 set(gca,'FontName','times','FontSize',font_size,'TickLabelInterpreter','Latex');
 set(gcf,'Position',[100,100,width,heigth]);
 saveas(gcf,[path_figures 'io_motion.svg']);
-saveas(gcf,[path_figures 'io_motion.png']);
 %% Figure low frame rate
 figure()
 errorbar(TV.sampling_density,mean(TV.average_FMeasure{figures_cvpr(6)}),std(TV.average_FMeasure{figures_cvpr(6)}),...
@@ -167,7 +161,6 @@ get(gca);
 set(gca,'FontName','times','FontSize',font_size,'TickLabelInterpreter','Latex');
 set(gcf,'Position',[100,100,width,heigth]);
 saveas(gcf,[path_figures 'low_frame_rate.svg']);
-saveas(gcf,[path_figures 'low_frame_rate.png']);
 %% Figure PTZ
 figure()
 errorbar(TV.sampling_density,mean(TV.average_FMeasure{figures_cvpr(8)}),std(TV.average_FMeasure{figures_cvpr(8)}),...
@@ -192,7 +185,6 @@ get(gca);
 set(gca,'FontName','times','FontSize',font_size,'TickLabelInterpreter','Latex');
 set(gcf,'Position',[100,100,width,heigth]);
 saveas(gcf,[path_figures 'ptz.svg']);
-saveas(gcf,[path_figures 'ptz.png']);
 %% Figure Shadow
 figure()
 errorbar(TV.sampling_density,mean(TV.average_FMeasure{figures_cvpr(9)}),std(TV.average_FMeasure{figures_cvpr(9)}),...
@@ -217,7 +209,6 @@ get(gca);
 set(gca,'FontName','times','FontSize',font_size,'TickLabelInterpreter','Latex');
 set(gcf,'Position',[100,100,width,heigth]);
 saveas(gcf,[path_figures 'shadow.svg']);
-saveas(gcf,[path_figures 'shadow.png']);
 %% Figure Thermal
 figure()
 errorbar(TV.sampling_density,mean(TV.average_FMeasure{figures_cvpr(10)}),std(TV.average_FMeasure{figures_cvpr(10)}),...
@@ -243,4 +234,3 @@ get(gca);
 set(gca,'FontName','times','FontSize',font_size,'TickLabelInterpreter','Latex');
 set(gcf,'Position',[100,100,width,heigth]);
 saveas(gcf,[path_figures 'thermal.svg']);
-saveas(gcf,[path_figures 'thermal.png']);
