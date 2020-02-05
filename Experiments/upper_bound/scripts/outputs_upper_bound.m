@@ -71,7 +71,6 @@ for i=1:size(folder_challenges,1)
             folder_challenges{i},'/',...
             folders_categories{i}{jj},'/'];
         mkdir(results_path)
-        %% Sampling pattern
         indx_category = cont_category;
         cont_category = cont_category + 1;
         x_reconstructed_random = x;
