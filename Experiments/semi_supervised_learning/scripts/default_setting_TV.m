@@ -69,7 +69,7 @@ param.maxit = 200;
 for hh=1:length(epsilon_set_pesenson)
     disp(['Computing epsilon: ',num2str(epsilon_set_pesenson(hh))]);
     param.regularize_epsilon = epsilon_set_pesenson(hh);
-    for h=6:length(percentage_sampling)
+    for h=1:length(percentage_sampling)
         disp(['Sampling density: ',num2str(percentage_sampling(h))]);
         for ii=1:repetitions
             cont_category = 1;
