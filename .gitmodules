@@ -1,3 +1,6 @@
 [submodule "Toolboxes/gspbox"]
 	path = Toolboxes/gspbox
 	url = https://github.com/jhonygiraldo/gspbox
+[submodule "Toolboxes/unlocbox"]
+	path = Toolboxes/unlocbox
+	url = https://github.com/epfl-lts2/unlocbox
