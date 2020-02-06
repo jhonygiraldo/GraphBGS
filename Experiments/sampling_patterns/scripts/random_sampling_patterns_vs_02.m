@@ -28,7 +28,7 @@ folders_categories = {{'blizzard';'skating';'snowFall';'wetSnow'};...
     {'corridor';'diningRoom';'lakeSide';'library';'park'};...
     {'turbulence0';'turbulence1';'turbulence2';'turbulence3'}};
 %%
-percentage_sampling = [0.001, 0.005, 0.01, 0.02:0.02:0.2];
+percentage_sampling = [0.001, 0.005, 0.01, 0.02:0.02:0.1];
 %%
 list_raw_images = cell(size(folder_challenges,1),1);
 list_of_images_cell = cell(size(folder_challenges,1),1);
