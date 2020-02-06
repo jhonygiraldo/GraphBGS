@@ -1,4 +1,5 @@
-% This code needs the GSP toolbox
+% This code needs the GSP toolbox, this code constructs a graph 
+% G2 with k2 using as base another graph G1 with k1, such that k1>k2
 clear all, close all, clc;
 %% Setting of paths
 segmentation_algorithm = 'R_50_FPN_COCO';
@@ -9,7 +10,7 @@ path_to_construction = [pwd,'/../',construction_algorithm,'-',segmentation_algor
     '-',background_inti_algorithm,'/'];
 mkdir(path_to_construction);
 %%
-load('../k-NN-k-40-R_50_FPN_COCO-median_filter/full_graph.mat');
+load('../k-NN-k-40-R_50_FPN_COCO-median_filter/full_graph.mat'); % load graph G1
 clear G
 %%
 N = size(points,1);
