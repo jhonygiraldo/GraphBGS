@@ -1,9 +1,9 @@
 % This code needs the GSP toolbox
 clear all, close all, clc;
 %% Setting of paths
-segmentation_algorithm = 'X_101_FPN_COCO';
+segmentation_algorithm = 'R_50_FPN_COCO';
 background_inti_algorithm = 'median_filter';
-construction_algorithm = 'k-NN';
+construction_algorithm = 'k-NN-k-40';
 path_to_construction = [pwd,'/../',construction_algorithm,'-',segmentation_algorithm,...
     '-',background_inti_algorithm,'/'];
 mkdir(path_to_construction);
@@ -37,10 +37,8 @@ for i=1:length(folder_challenges)
     end
 end
 %%
-points = zscore(points);
-%%
 N = size(points,1);
-knn_param = 10;
+knn_param = 40;
 [Idx Dist] = knnsearch(points,points,'K',knn_param+1);
 sigma = mean(mean(Dist));
 W = sparse(N,N);
