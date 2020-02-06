@@ -55,7 +55,7 @@ for h=1:length(folder_challenges)
                 node_image = full(logical_sparse_mat);
                 IoNode_ROI = sum(sum(node_image & ~ROI))/(sum(sum(node_image))); %Intersection over Node with ROI
                 if IoNode_ROI == 1
-                    label_bin = [label_bin; 0 0 1]; % This is to be sure that any node outside the ROI is incorrectly classified
+                    label_bin = [label_bin; 0 0 1]; % This is to be sure that any node outside the ROI is not incorrectly classified
                 else
                     gt_image_temp = imread([path_to_ground_truth,'gt',number_image,'.png']);
                     [x_gt y_gt] = size(gt_image_temp);
