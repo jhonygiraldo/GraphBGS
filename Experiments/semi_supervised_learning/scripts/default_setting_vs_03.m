@@ -3,7 +3,7 @@ clear all, close all, clc;
 path_to_change_detection = '/Users/knguye02/Documents/dataset2014/dataset/'; % Change this line with your path to the change detection database
 segmentation_algorithm = 'R_50_FPN_COCO';
 background_inti_algorithm = 'median_filter';
-construction_algorithm = 'k-NN-k-40';
+construction_algorithm = 'k-NN-k-30';
 semi_supervised_learning = 'variational_splines';
 path_to_results = [pwd,'/../',semi_supervised_learning,'-',construction_algorithm,...
     '-',segmentation_algorithm,'-',background_inti_algorithm,'/'];
@@ -63,15 +63,13 @@ for i=1:size(folder_challenges,1)
     indx_first_image_in_list{i} = indx_first_image_in_list_temp;
 end
 %%
-%epsilon_set_pesenson = [0.1, 0.2, 0.5, 1, 2, 5, 10, 20, 50, 1e2];
 epsilon_set_pesenson = [0.2];
 %%
 repetitions = 5;
 for hh=1:length(epsilon_set_pesenson)
     disp(['Computing epsilon: ',num2str(epsilon_set_pesenson(hh))]);
     param.regularize_epsilon = epsilon_set_pesenson(hh);
-    %for h=5:length(percentage_sampling)
-    for h=4:8
+    for h=1:length(percentage_sampling)
         disp(['Sampling density: ',num2str(percentage_sampling(h))]);
         for ii=1:repetitions
             cont_category = 1;
