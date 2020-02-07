@@ -4,3 +4,6 @@
 [submodule "Toolboxes/unlocbox"]
 	path = Toolboxes/unlocbox
 	url = https://github.com/epfl-lts2/unlocbox
+[submodule "Toolboxes/detectron2"]
+	path = Toolboxes/detectron2
+	url = https://github.com/facebookresearch/detectron2
