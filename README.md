@@ -1,5 +1,5 @@
 # GraphBGS: Background Subtraction via Recovery of Graph Signals
-Authors: [Jhony H Giraldo](https://sites.google.com/view/jhonygiraldo), [Thierry Bouwmans](https://sites.google.com/site/thierrybouwmans/)
+Authors: [Jhony H Giraldo](https://sites.google.com/view/jhonygiraldo), [Sajid Javed](https://sites.google.com/view/sajidjaved/home), [Thierry Bouwmans](https://sites.google.com/site/thierrybouwmans/)
 - - - -
 #### [Please see the journal version of our code here](https://github.com/jhonygiraldo/GraphMOS)
 - - - -
@@ -13,6 +13,13 @@ This repository is code release for our paper (arXiv report [here](https://arxiv
 
 If you use our code, please cite
 
+        @article{giraldo2020graph,
+          title={Graph Moving Object Segmentation},
+          author={Giraldo, Jhony H and Javed, Sajid and Bouwmans, Thierry},
+          journal={IEEE Transactions on Pattern Analysis and Machine Intelligence},
+          year={2020}
+        }
+        
         @inproceedings{giraldo2020graphbgs,
           title={GraphBGS: Background Subtraction via Recovery of Graph Signals},
           author={Giraldo, Jhony H and Bouwmans, Thierry},
